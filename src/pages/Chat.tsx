@@ -1,5 +1,5 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Box, Avatar, Typography, Button } from "@mui/material";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Box, Typography, Button } from "@mui/material";
 import { red } from "@mui/material/colors";
 import { useAuth } from "../context/AuthContext";
 import { HiLightBulb } from "react-icons/hi";
@@ -55,7 +55,7 @@ type Message={
 
 function Chat() {
   const auth = useAuth();
-  const inputRef = useRef<HTMLInputElement | null>();
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const [chatMessages, setChatMessages] = useState<Message[]>([])
   const handleSubmit = async ()=>{
     if (!inputRef.current) return;

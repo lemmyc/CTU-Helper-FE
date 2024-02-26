@@ -10,7 +10,7 @@ import { Toaster } from 'react-hot-toast'
 
 axios.defaults.baseURL = "https://right-willing-pika.ngrok-free.app/api"
 axios.defaults.withCredentials = true
-
+axios.defaults.headers.common['ngrok-skip-browser-warning'] = 'true'
 const theme = createTheme({
   typography:{
     fontFamily: "Plus Jakarta Sans, sans-serif",

@@ -6,110 +6,89 @@ import { HiLightBulb } from "react-icons/hi";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 import ChatItem from "../components/chat/ChatItem";
-import { deleteChats, getChats, sendChatRequest } from "../helpers/api-communicator";
+import {
+  deleteChats,
+  getChats,
+  sendChatRequest,
+} from "../helpers/api-communicator";
 import { useNavigate } from "react-router-dom";
-// const mockChatMessage = [
-//   {
-//     role: "USER",
-//     content: "Xin chào! Bạn có thể giúp tôi tìm thông tin về thời tiết không?",
-//   },
-//   {
-//     role: "ASSISTANT",
-//     content:
-//       "Chào bạn! Chắc chắn, tôi sẽ giúp bạn tìm thông tin thời tiết. Bạn muốn biết thời tiết ở đâu?",
-//   },
-//   {
-//     role: "USER",
-//     content:
-//       "Tôi đang ở Hà Nội, Việt Nam. Bạn có thể cung cấp thông tin thời tiết hiện tại không?",
-//   },
-//   {
-//     role: "ASSISTANT",
-//     content:
-//       "Tất nhiên! Hiện tại ở Hà Nội, nhiệt độ là 25°C, có mây nhẹ. Có gì khác bạn muốn biết không?",
-//   },
-//   {
-//     role: "USER",
-//     content: "Cảm ơn bạn! Bạn còn có thể giúp tôi đặt một cuộc hẹn hay không?",
-//   },
-//   {
-//     role: "ASSISTANT",
-//     content: "Tất nhiên! Bạn muốn đặt cuộc hẹn vào thời gian nào và ở đâu?",
-//   },
-//   {
-//     role: "USER",
-//     content:
-//       "Tôi muốn đặt cuộc hẹn vào ngày mai lúc 10 giờ sáng tại quán cà phê gần đây. Bạn có thể giúp tôi đặt được không?",
-//   },
-//   {
-//     role: "ASSISTANT",
-//     content:
-//       "Dĩ nhiên! Tôi sẽ giúp bạn đặt cuộc hẹn vào ngày mai lúc 10 giờ sáng tại quán cà phê gần đây. Có cần thêm thông tin nào khác không?",
-//   },
-// ];
 
-type Message={
+type Message = {
   role: "USER" | "ASSISTANT";
   content: string;
-}
+};
 
 function Chat() {
   const auth = useAuth();
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [chatMessages, setChatMessages] = useState<Message[]>([])
-  const handleSubmit = async ()=>{
+  const [chatMessages, setChatMessages] = useState<Message[]>([]);
+  const chatContainerRef = useRef<HTMLDivElement | null>(null);
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
+  };
+  const handleSubmit = async () => {
     if (!inputRef.current) return;
     const content = inputRef.current.value.trim() as string;
-    inputRef.current.value = ""
+    inputRef.current.value = "";
     const newMessage: Message = {
       role: "USER",
-      content
-    }
-    setChatMessages((prev)=>[...prev, newMessage]);
+      content,
+    };
+    setChatMessages((prev) => [...prev, newMessage]);
     const chatData = await sendChatRequest(content);
     setChatMessages([...chatData.chats]);
-  }
-  const handleDeleteChats = async ()=>{
+    // scrollToBottom();
+
+  };
+  const handleDeleteChats = async () => {
     try {
-      toast.loading("Đang xóa dữ liệu hội thoại",{
-        id: "deleteChats"
-      })
+      toast.loading("Đang xóa dữ liệu hội thoại", {
+        id: "deleteChats",
+      });
       await deleteChats();
       setChatMessages([]);
-      toast.success("Xóa hoàn tất",{
-        id: "deleteChats"
-      })
+      toast.success("Xóa hoàn tất", {
+        id: "deleteChats",
+      });
     } catch (error) {
       console.log(error);
-      toast.success("Đã có lỗi trong quá trình tải",{
-        id: "deleteChats"
-      })
+      toast.success("Đã có lỗi trong quá trình tải", {
+        id: "deleteChats",
+      });
     }
-  }
+  };
   const navigate = useNavigate();
-  useLayoutEffect(()=>{
-    if (auth?.isLoggedIn && auth.user){
-      toast.loading("Đang tải các đoạn hội thoại trước đó...",{
-        id: "loadingChats"
-      })
-      getChats().then((data)=>{
-        setChatMessages([...data.chats]);
-        toast.success("Tải hoàn tất",{
-          id: "loadingChats"
+  useLayoutEffect(() => {
+    if (auth?.isLoggedIn && auth.user) {
+      toast.loading("Đang tải các đoạn hội thoại trước đó...", {
+        id: "loadingChats",
+      });
+      getChats()
+        .then((data) => {
+          setChatMessages([...data.chats]);
+          toast.success("Tải hoàn tất", {
+            id: "loadingChats",
+          });
         })
-      }).catch(error => {
-        console.log(error);
-        toast.success("Đã có lỗi trong quá trình tải",{
-          id: "loadingChats"
-        })
-      })
+        .catch((error) => {
+          console.log(error);
+          toast.success("Đã có lỗi trong quá trình tải", {
+            id: "loadingChats",
+          });
+        });
     }
-  }, [auth])
-  useEffect(()=>{
-    if (!auth?.user){
-      return navigate("/login")
+  }, [auth]);
+  useLayoutEffect(() => {
+    scrollToBottom();
+  }, [chatMessages]);
+  useEffect(() => {
+    if (!auth?.user) {
+      return navigate("/login");
     }
-  }, [auth])
+  }, [auth]);
   return (
     <Box
       sx={{
@@ -204,6 +183,7 @@ function Chat() {
           <strong>CTU-Helper</strong>&nbsp;&nbsp;Chat
         </Typography>
         <Box
+          ref={chatContainerRef}
           sx={{
             width: "100%",
             height: "75vh",
@@ -218,10 +198,7 @@ function Chat() {
         >
           {chatMessages.map((message, index) => {
             return (
-              <div
-                key={message + index.toString()}
-
-              >
+              <div key={message + index.toString()}>
                 {
                   //@ts-ignore
                   <ChatItem
@@ -237,12 +214,17 @@ function Chat() {
           sx={{
             display: "flex",
             gap: 1,
-            mt: 1
+            mt: 1,
           }}
         >
           <input
             type="text"
             ref={inputRef}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSubmit();
+              }
+            }}
             style={{
               flex: 1,
               backgroundColor: "transparent",
@@ -251,7 +233,7 @@ function Chat() {
               border: "1px solid #ccc",
               borderRadius: "4px",
               fontSize: "1rem",
-              fontFamily: 'Plus Jakarta Sans, sans-serif'
+              fontFamily: "Plus Jakarta Sans, sans-serif",
             }}
           />
           <Button onClick={handleSubmit} variant="outlined">

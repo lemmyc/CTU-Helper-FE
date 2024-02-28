@@ -16,15 +16,22 @@ function Home() {
       sx={{
         height: "100%",
         display: "flex",
-        width: "100%",
+        width: {
+          xs: "348px",
+          sm: "496px",
+          md: "559px",
+          lg: "664px",
+          xl: "780px",
+        },
         alignItems: "center",
         justifyContent: "center",
+        margin: "0 auto"
       }}
     >
       <Box
         sx={{
           display: "flex",
-          width: { xs: "100%", sm: "80%", md:"60%", xl: "50%" },
+          width: "100%",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
@@ -79,9 +86,9 @@ function Home() {
               fontSize: {
                 xs: "150px",
                 sm: "220px",
-                md: "280px",
-                lg: "350px",
-                xl: "400px",
+                md: "250px",
+                lg: "300px",
+                xl: "350px",
               },
               lineHeight: ".6",
               fontFamily: "right-grotesk-tall-bold",

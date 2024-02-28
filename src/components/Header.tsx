@@ -20,12 +20,12 @@ function Header() {
         <div>
           {auth?.isLoggedIn ? (
             <>
-              <NavigationLink
+              {/* <NavigationLink
                 background="#fff"
                 to="/chat"
                 text="Hỏi đáp"
                 textColor="#333"
-              ></NavigationLink>
+              ></NavigationLink> */}
               <NavigationLink
                 background="transparent"
                 to="/"

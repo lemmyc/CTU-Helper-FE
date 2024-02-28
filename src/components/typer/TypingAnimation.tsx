@@ -5,7 +5,7 @@ const TypingAnimation = () => {
       sequence={[
         "Tiết 9 bắt đầu lúc mấy giờ ?",
         1000,
-        "Làm thế nào để xin điểm I ?",
+        "Làm thế nào để nhận được điểm I ?",
         1000,
         "Chỉ tiêu tuyển sinh ngành Khoa học máy tính ?",
         1000,
@@ -13,8 +13,8 @@ const TypingAnimation = () => {
         1000,
       ]}
       wrapper="span"
-      speed={50}
-      style={{ fontSize: "36px", display: "inline-block" }}
+      speed={68}
+      style={{ fontSize: "24px", display: "inline-block", textAlign:"center" }}
       repeat={Infinity}
     />
   );

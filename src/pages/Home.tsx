@@ -1,10 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import TypingAnimation from "../components/typer/TypingAnimation";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import { BiSolidQuoteAltRight } from "react-icons/bi";
-import { useAuth } from "../context/AuthContext";
+import { IoMdQuote } from "react-icons/io";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
+import { useAuth } from "../context/AuthContext";
 
 function Home() {
   const auth = useAuth();
@@ -13,34 +15,154 @@ function Home() {
     <Box
       sx={{
         height: "100%",
+        display: "flex",
         width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <Box
         sx={{
           display: "flex",
-          width: "100%",
+          width: { xs: "100%", sm: "80%", md:"60%", xl: "50%" },
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center",
+          marginTop: { xs: "0.5rem", xl: "1rem" },
+          padding: "1rem",
         }}
       >
         <Box
           sx={{
             display: "flex",
             width: "100%",
-            flexDirection: "column",
+            flexDirection: "row",
             alignItems: "center",
-            margin: "1rem 0",
+            justifyContent: "space-between",
           }}
         >
-          <Typography variant="h3" marginY={2}>
-            Chào mừng <strong>{auth?.user?.name || "bạn"}</strong> đến với <strong>CTU-Helper</strong>
+          <Typography
+            sx={{
+              color: "#1976d2",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+              fontSize: { xs: "18px", xl: "24px" },
+            }}
+          >
+            Chào mừng
           </Typography>
-          <Typography variant="h4">
-            Chatbot hỏi đáp những câu hỏi liên quan đến <strong>Trường Đại học Cần Thơ</strong>
+          <Typography
+            sx={{
+              color: "#1976d2",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+              fontSize: { xs: "18px", xl: "24px" },
+            }}
+          >
+            {auth?.user ? auth?.user?.name : "bạn"}
           </Typography>
         </Box>
-        <Box my={2}>
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: { xs: "2rem", md: "3rem", xl: "4rem" },
+          }}
+        >
+          <Typography
+            sx={{
+              color: "#1976d2",
+              textTransform: "uppercase",
+              fontSize: {
+                xs: "150px",
+                sm: "220px",
+                md: "280px",
+                lg: "350px",
+                xl: "400px",
+              },
+              lineHeight: ".6",
+              fontFamily: "right-grotesk-tall-bold",
+            }}
+          >
+            CTU-HELPER
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: { xs: "block", md: "flex" },
+            width: "100%",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography
+            sx={{
+              fontStyle: "italic",
+              color: "#1976d2",
+              fontWeight: "bold",
+              fontSize: { xs: "16px", xl: "18px" },
+              display: { xs: "inline-block", md: "block" },
+            }}
+          >
+            Chatbot
+          </Typography>
+          <Typography
+            sx={{
+              display: { xs: "inline-block", md: "block" },
+              fontSize: { xs: "16px", xl: "18px" },
+            }}
+          >
+            &nbsp;hỏi đáp
+          </Typography>
+          <Typography
+            sx={{
+              display: { xs: "inline-block", md: "block" },
+              fontSize: { xs: "16px", xl: "18px" },
+            }}
+          >
+            &nbsp;
+          </Typography>
+          <Box
+            sx={{
+              flexGrow: "1",
+              height: "1px",
+              backgroundColor: "#333",
+              display: { xs: "none", md: "block" },
+            }}
+          ></Box>
+          <Typography
+            sx={{
+              display: { xs: "none", md: "block" },
+              fontSize: { xs: "16px", xl: "18px" },
+            }}
+          >
+            &nbsp;
+          </Typography>
+          <Typography
+            sx={{
+              display: { xs: "inline-block", md: "block" },
+              fontSize: { xs: "16px", xl: "18px" },
+            }}
+          >
+            những câu hỏi liên quan đến&nbsp;
+          </Typography>
+          <Typography
+            sx={{
+              fontStyle: "italic",
+              color: "#1976d2",
+              fontWeight: "bold",
+              display: { xs: "inline-block", md: "block" },
+              fontSize: { xs: "16px", xl: "18px" },
+            }}
+          >
+            Trường đại học Cần Thơ
+          </Typography>
+        </Box>
+        <Box sx={{ marginY: "1rem", borderRadius: { xs: "12px", md: "38px", xl: "40px" }, overflow: "hidden" }}>
           <Carousel
             showStatus={false}
             showThumbs={false}
@@ -59,10 +181,29 @@ function Home() {
             </div>
           </Carousel>
         </Box>
-        <BiSolidQuoteAltRight
+        <Link to="/chat">
+          <Button
+            sx={{
+              width: { xs: "200px", md: "250px", xl: "280px" },
+              paddingY: { xs: "4px", md: "6px", xl: "8px" },
+              my: 1,
+              fontWeight: 600,
+              fontSize: { xs: "16px", md: "16px", xl: "18px" },
+              color: "#fff",
+              bgcolor: "#1976d2",
+              ":hover": {
+                bgcolor: "#197fff",
+              },
+            }}
+          >
+            Bắt đầu Hỏi/ Đáp &nbsp;&nbsp;&nbsp;&nbsp;
+            <FaArrowRightLong />
+          </Button>
+        </Link>
+        <IoMdQuote
           style={{
-            width: "64px",
-            height: "64px",
+            width: "32px",
+            height: "32px",
           }}
         />
         <TypingAnimation />

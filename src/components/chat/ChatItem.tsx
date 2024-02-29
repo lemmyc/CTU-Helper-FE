@@ -25,6 +25,7 @@ function ChatItem({
           sx={{
             ml: "0",
             bgcolor: "white",
+            mt: ".5rem"
           }}
         >
           <img
@@ -59,6 +60,8 @@ function ChatItem({
             ml: "0",
             bgcolor: "white",
             color: "#333",
+            mt: ".5rem"
+
           }}
         >
           {auth?.user?.name[0] || ""}

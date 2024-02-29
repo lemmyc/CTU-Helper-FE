@@ -14,14 +14,22 @@ function CustomizedInput(props: Props) {
       }}
 
       InputProps={{
-        style:{
-            width: "400px",
-        }
       }}
       margin="normal"
       name={props.name}
       label={props.label}
       type={props.type}
+      sx={{
+        width: {
+          xs: "280px",
+          sm: "500px",
+          md: "600px",
+        },
+        fontSize: {
+          xs: "15px",
+          md: "18px"
+        }
+      }}
     />
   );
 }

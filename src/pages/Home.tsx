@@ -112,14 +112,14 @@ function Home() {
               color: "#1976d2",
               fontWeight: "bold",
               fontSize: { xs: "16px", xl: "18px" },
-              display: { xs: "inline-block", md: "block" },
+              display: { xs: "inline", md: "block" },
             }}
           >
             Chatbot
           </Typography>
           <Typography
             sx={{
-              display: { xs: "inline-block", md: "block" },
+              display: { xs: "inline", md: "block" },
               fontSize: { xs: "16px", xl: "18px" },
             }}
           >
@@ -127,7 +127,7 @@ function Home() {
           </Typography>
           <Typography
             sx={{
-              display: { xs: "inline-block", md: "block" },
+              display: { xs: "inline", md: "block" },
               fontSize: { xs: "16px", xl: "18px" },
             }}
           >
@@ -151,7 +151,7 @@ function Home() {
           </Typography>
           <Typography
             sx={{
-              display: { xs: "inline-block", md: "block" },
+              display: { xs: "inline", md: "block" },
               fontSize: { xs: "16px", xl: "18px" },
             }}
           >
@@ -162,7 +162,7 @@ function Home() {
               fontStyle: "italic",
               color: "#1976d2",
               fontWeight: "bold",
-              display: { xs: "inline-block", md: "block" },
+              display: { xs: "inline", md: "block" },
               fontSize: { xs: "16px", xl: "18px" },
             }}
           >

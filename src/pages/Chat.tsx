@@ -99,6 +99,7 @@ function Chat() {
         flex: 1,
         width: "100%",
         height: "100%",
+        // maxHeight: "90"
         mt: 3,
       }}
     >
@@ -118,7 +119,7 @@ function Chat() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              mx: 3,
+              ml: 3,
               p: 3,
               boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
               borderRadius: 5,
@@ -172,14 +173,17 @@ function Chat() {
             sm: 1,
           },
           flexDirection: "column",
-          mr: 3,
+          mx: 2,
         }}
       >
         <Typography
           sx={{
             textAlign: "center",
             flex: 1,
-            fontSize: "40px",
+            fontSize: {
+              xs: "24px",
+              lg: "40px",
+            },
             mb: 2,
           }}
         >
@@ -189,8 +193,13 @@ function Chat() {
           ref={chatContainerRef}
           sx={{
             width: "100%",
-            height: "75vh",
+            height: {
+                xs: "71vh",
+                md: "74vh",
+                // xl: "75vh"
+              },
             // bgcolor: "red",
+            // height: ,
             display: "flex",
             flexDirection: "column",
             overflow: "scroll",

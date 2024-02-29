@@ -69,7 +69,10 @@ function SignUp() {
         // flex={{ xs: 1 }}
         justifyContent={"center"}
         alignItems={"center"}
-        marginTop={"64px"}
+        sx={{
+          mt: 5, 
+          mx: 5
+        }}
       >
         <form
           onSubmit={handleSubmit}
@@ -92,23 +95,38 @@ function SignUp() {
               textAlign="center"
               margin={2}
               fontWeight={600}
+              sx={{
+                fontSize: {
+                  xs: "18px",
+                  md: "24px"
+                }
+              }}
             >
               Đăng ký tài khoản tại CTU-Helper
             </Typography>
             <CustomizedInput type="text" name="name" label="Họ tên" />
             <CustomizedInput type="email" name="email" label="Email" />
             <CustomizedInput type="password" name="password" label="Mật Khẩu" />
-            <div>
+            <Typography sx={{
+                fontSize: {
+                  xs: "15px",
+                  md: "18px"
+                }
+              }}>
               Đã có tài khoản?&nbsp;
               <Link to={"/login"}>Đăng nhập ngay</Link>
-            </div>
+            </Typography>
             <Button
               type="submit"
               sx={{
                 px: 2,
                 py: 1,
                 mt: 2,
-                width: "400px",
+                width: {
+                  xs: "280px",
+                  sm: "500px",
+                  md: "600px",
+                },
                 borderRadius: "8px",
               }}
             >

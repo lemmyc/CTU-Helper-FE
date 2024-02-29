@@ -1,5 +1,6 @@
 import { Box, Avatar, Typography } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
+import Markdown from "marked-react";
 function ChatItem({
   content,
   role,
@@ -7,7 +8,7 @@ function ChatItem({
   content: string;
   role: "USER" | "ASSISTANT";
 }) {
-    const auth = useAuth();
+  const auth = useAuth();
   return role === "ASSISTANT" ? (
     <>
       <Box
@@ -17,58 +18,60 @@ function ChatItem({
           bgcolor: "#fff",
           my: 1,
           gap: 2,
-          borderRadius: '4px'
+          borderRadius: "4px",
         }}
       >
         <Avatar
           sx={{
             ml: "0",
             bgcolor: "white",
-
           }}
         >
-          <img src="bot.png" alt="bot" style={{
-            width: "30px"
-          }}/>
+          <img
+            src="bot.png"
+            alt="bot"
+            style={{
+              width: "30px",
+            }}
+          />
         </Avatar>
         <Box>
-            <Typography>
-                {content}
-            </Typography>
+          <Typography>
+            <Markdown>{content}</Markdown>
+          </Typography>
         </Box>
       </Box>
     </>
   ) : (
     <>
-        <Box
+      <Box
         sx={{
           display: "flex",
           p: 2,
           bgcolor: "#3498db",
-          borderRadius: '4px',
+          borderRadius: "4px",
           my: 1,
           gap: 2,
         }}
       >
         <Avatar
-              sx={{
-                ml: "0",
-                bgcolor: "white",
-                color: "#333"
-              }}
-            >
-              {auth?.user?.name[0] || ""}
-              {auth?.user?.name.split(" ").slice(-1)[0][0] || ""}
-            </Avatar>
+          sx={{
+            ml: "0",
+            bgcolor: "white",
+            color: "#333",
+          }}
+        >
+          {auth?.user?.name[0] || ""}
+          {auth?.user?.name.split(" ").slice(-1)[0][0] || ""}
+        </Avatar>
         <Box>
-            <Typography
-              sx={{
-          color:  "#fff",
-
-              }}
-            >
-                {content}
-            </Typography>
+          <Typography
+            sx={{
+              color: "#fff",
+            }}
+          >
+            <Markdown>{content}</Markdown>
+          </Typography>
         </Box>
       </Box>
     </>

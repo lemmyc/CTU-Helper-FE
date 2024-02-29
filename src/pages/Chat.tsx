@@ -22,6 +22,7 @@ function Chat() {
   const auth = useAuth();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
@@ -37,11 +38,13 @@ function Chat() {
       role: "USER",
       content,
     };
+    setIsLoading(true)
     setChatMessages((prev) => [...prev, newMessage]);
     const chatData = await sendChatRequest(content);
     setChatMessages([...chatData.chats]);
-    // scrollToBottom();
+    setIsLoading(false)
 
+    // scrollToBottom();
   };
   const handleDeleteChats = async () => {
     try {
@@ -209,6 +212,12 @@ function Chat() {
               </div>
             );
           })}
+          <div style={{ display: isLoading ? "block" : "none" }}>
+            <ChatItem
+              content={"Bạn đợi mình suy nghĩ một chút nhé..."}
+              role={"ASSISTANT"}
+            ></ChatItem>
+          </div>
         </Box>
         <Box
           sx={{

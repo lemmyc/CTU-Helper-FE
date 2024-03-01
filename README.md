@@ -1,4 +1,4 @@
-**# CTU-Helper Website**
+# CTU-Helper Website
 
 The CTU-Helper website is an application built using **React** and **TypeScript**, designed to provide a chat-based Q&A service related to educational matters. Below is the usage guide for this repository:
 
@@ -7,7 +7,7 @@ The CTU-Helper website is an application built using **React** and **TypeScript*
 1. **Clone** this repository to your local machine by running the following command:
 
     ```
-    git clone [https://github.com/lemmyc/CTU_HELPER_FE.git](https://github.com/lemmyc/CTU_HELPER_FE.git)
+    git clone https://github.com/lemmyc/CTU_HELPER_FE.git
     ```
 
 2. **Install** the dependencies using npm:

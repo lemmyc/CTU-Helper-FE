@@ -49,24 +49,8 @@ function SignUp() {
         justifyContent: "space-around"
       }}
     >
-      {/* <Box
-        padding={8}
-        marginTop={8}
-        display={{ md: "flex", sm: "none", xs: "none" }}
-      >
-        <img
-          style={{
-            mixBlendMode: "multiply",
-            width: "320px",
-            pointerEvents: "none",
-          }}
-          src="chatbot.gif"
-          alt="Chatbot"
-        />
-      </Box> */}
       <Box
         display={"flex"}
-        // flex={{ xs: 1 }}
         justifyContent={"center"}
         alignItems={"center"}
         sx={{

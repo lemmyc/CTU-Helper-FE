@@ -99,8 +99,10 @@ function Chat() {
         flex: 1,
         width: "100%",
         height: "100%",
-        // maxHeight: "90"
-        mt: 3,
+        boxSizing: "border-box",
+        pt: 2,
+        px: 2,
+        gap: 2,
       }}
     >
       <Box
@@ -119,8 +121,7 @@ function Chat() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              ml: 3,
-              p: 3,
+              p: 2,
               boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
               borderRadius: 5,
             }}
@@ -140,7 +141,7 @@ function Chat() {
               bắt đầu bằng một câu hỏi nhé !
               <br />
               <br />
-              Các câu hỏi có thể liên quan đến{" "}
+              Các câu hỏi có thể liên quan đến &nbsp;
               <strong>
                 Quy chế học vụ, Quyết định, Thông tin tuyển sinh,...
               </strong>
@@ -173,7 +174,6 @@ function Chat() {
             sm: 1,
           },
           flexDirection: "column",
-          mx: 2,
         }}
       >
         <Typography
@@ -184,7 +184,6 @@ function Chat() {
               xs: "24px",
               lg: "40px",
             },
-            mb: 2,
           }}
         >
           <strong>CTU-Helper</strong>&nbsp;&nbsp;Chat
@@ -193,13 +192,7 @@ function Chat() {
           ref={chatContainerRef}
           sx={{
             width: "100%",
-            height: {
-                xs: "71vh",
-                md: "74vh",
-                // xl: "75vh"
-              },
-            // bgcolor: "red",
-            // height: ,
+            maxHeight: "calc(100vh - 220px)",
             display: "flex",
             flexDirection: "column",
             overflow: "scroll",
@@ -223,7 +216,7 @@ function Chat() {
           })}
           <div style={{ display: isLoading ? "block" : "none" }}>
             <ChatItem
-              content={"Bạn đợi mình suy nghĩ một chút nhé..."}
+              content={"Bạn đợi mình tìm kiếm các thông tin một chút nhé..."}
               role={"ASSISTANT"}
             ></ChatItem>
           </div>
@@ -258,6 +251,14 @@ function Chat() {
             <IoPaperPlaneOutline size={24}></IoPaperPlaneOutline>
           </Button>
         </Box>
+        <Typography
+          sx={{
+            mt: 0.5,
+            ml: 1,
+            fontSize: "0.75rem",
+            fontStyle: "italic"
+          }}
+        >Chatbot đôi khi sẽ đưa ra các thông tin không chính xác hoặc kì lạ. Hãy xác nhận lại với Trường nếu cần thiết.</Typography>
       </Box>
     </Box>
   );

@@ -54,6 +54,12 @@ function Home() {
               fontWeight: "bold",
               textTransform: "uppercase",
               fontSize: { xs: "18px", xl: "24px" },
+              pointerEvents: "none",
+              userSelect: "none", 
+              WebkitUserSelect: "none", 
+              MozUserSelect: "none", 
+              msUserSelect: "none", 
+              userDrag: "none",
             }}
           >
             Chào mừng
@@ -64,6 +70,12 @@ function Home() {
               fontWeight: "bold",
               textTransform: "uppercase",
               fontSize: { xs: "18px", xl: "24px" },
+              pointerEvents: "none",
+              userSelect: "none", 
+              WebkitUserSelect: "none", 
+              MozUserSelect: "none", 
+              msUserSelect: "none", 
+              userDrag: "none",
             }}
           >
             {auth?.user ? auth?.user?.name : "bạn"}
@@ -92,6 +104,12 @@ function Home() {
               },
               lineHeight: ".6",
               fontFamily: "right-grotesk-tall-bold",
+              pointerEvents: "none",
+              userSelect: "none", 
+              WebkitUserSelect: "none", 
+              MozUserSelect: "none", 
+              msUserSelect: "none", 
+              userDrag: "none",
             }}
           >
             CTU-HELPER
@@ -113,6 +131,12 @@ function Home() {
               fontWeight: "bold",
               fontSize: { xs: "16px", xl: "18px" },
               display: { xs: "inline", md: "block" },
+              pointerEvents: "none",
+              userSelect: "none", 
+              WebkitUserSelect: "none", 
+              MozUserSelect: "none", 
+              msUserSelect: "none", 
+              userDrag: "none",
             }}
           >
             Chatbot
@@ -121,6 +145,12 @@ function Home() {
             sx={{
               display: { xs: "inline", md: "block" },
               fontSize: { xs: "16px", xl: "18px" },
+              pointerEvents: "none",
+              userSelect: "none", 
+              WebkitUserSelect: "none", 
+              MozUserSelect: "none", 
+              msUserSelect: "none", 
+              userDrag: "none",
             }}
           >
             &nbsp;hỏi đáp
@@ -129,6 +159,12 @@ function Home() {
             sx={{
               display: { xs: "inline", md: "block" },
               fontSize: { xs: "16px", xl: "18px" },
+              pointerEvents: "none",
+              userSelect: "none", 
+              WebkitUserSelect: "none", 
+              MozUserSelect: "none", 
+              msUserSelect: "none", 
+              userDrag: "none",
             }}
           >
             &nbsp;
@@ -145,6 +181,12 @@ function Home() {
             sx={{
               display: { xs: "none", md: "block" },
               fontSize: { xs: "16px", xl: "18px" },
+              pointerEvents: "none",
+              userSelect: "none", 
+              WebkitUserSelect: "none", 
+              MozUserSelect: "none", 
+              msUserSelect: "none", 
+              userDrag: "none",
             }}
           >
             &nbsp;
@@ -153,6 +195,12 @@ function Home() {
             sx={{
               display: { xs: "inline", md: "block" },
               fontSize: { xs: "16px", xl: "18px" },
+              pointerEvents: "none",
+              userSelect: "none", 
+              WebkitUserSelect: "none", 
+              MozUserSelect: "none", 
+              msUserSelect: "none", 
+              userDrag: "none",
             }}
           >
             những câu hỏi liên quan đến&nbsp;
@@ -164,6 +212,12 @@ function Home() {
               fontWeight: "bold",
               display: { xs: "inline", md: "block" },
               fontSize: { xs: "16px", xl: "18px" },
+              pointerEvents: "none",
+              userSelect: "none", 
+              WebkitUserSelect: "none", 
+              MozUserSelect: "none", 
+              msUserSelect: "none", 
+              userDrag: "none",
             }}
           >
             Trường đại học Cần Thơ

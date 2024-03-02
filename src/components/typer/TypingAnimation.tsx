@@ -14,7 +14,16 @@ const TypingAnimation = () => {
       ]}
       wrapper="span"
       speed={68}
-      style={{ fontSize: "24px", display: "inline-block", textAlign:"center" }}
+      style={{
+        fontSize: "24px",
+        display: "inline-block",
+        textAlign: "center",
+        pointerEvents: "none",
+        userSelect: "none",
+        WebkitUserSelect: "none",
+        MozUserSelect: "none",
+        msUserSelect: "none",
+      }}
       repeat={Infinity}
     />
   );

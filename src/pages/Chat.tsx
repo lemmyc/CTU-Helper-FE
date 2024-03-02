@@ -31,7 +31,18 @@ function Chat() {
     }
   };
   const handleSubmit = async () => {
-    if (!inputRef.current) return;
+    if (!inputRef.current || !inputRef.current.value.trim()) {
+      toast.error("Vui lòng nhập thông tin cần hỏi", {
+        id: "submit-toast"
+      })
+      return;
+    }
+    if (isLoading) {
+      toast.error("Hệ thống đang xử lý câu hỏi trước đó, vui lòng đợi", {
+        id: "submit-toast"
+      })
+      return;
+    }
     const content = inputRef.current.value.trim() as string;
     inputRef.current.value = "";
     const newMessage: Message = {
@@ -43,8 +54,6 @@ function Chat() {
     const chatData = await sendChatRequest(content);
     setChatMessages([...chatData.chats]);
     setIsLoading(false)
-
-    // scrollToBottom();
   };
   const handleDeleteChats = async () => {
     try {
@@ -98,7 +107,7 @@ function Chat() {
         display: "flex",
         flex: 1,
         width: "100%",
-        height: "100%",
+        height: "calc(100vh - 64px)",
         boxSizing: "border-box",
         pt: 2,
         px: 2,

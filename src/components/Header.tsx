@@ -6,7 +6,6 @@ import NavigationLink from "./shared/NavigationLink";
 function Header() {
   const auth = useAuth();
   const location = useLocation()?.pathname;
-  // console.log(location);
   return location.startsWith("/login") || location.startsWith("/sign-up") ? (
     <AppBar sx={{ position: "static", boxShadow: "none" }}>
       <Toolbar sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -20,12 +19,6 @@ function Header() {
         <div>
           {auth?.isLoggedIn ? (
             <>
-              {/* <NavigationLink
-                background="#fff"
-                to="/chat"
-                text="Hỏi đáp"
-                textColor="#333"
-              ></NavigationLink> */}
               <NavigationLink
                 background="transparent"
                 to="/"

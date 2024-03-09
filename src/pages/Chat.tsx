@@ -148,6 +148,7 @@ function Chat() {
   }, []);
   useEffect(() => {
     if (transcript) {
+      // @ts-ignore
       inputRef.current.value = transcript;
     }
   }, [transcript]);

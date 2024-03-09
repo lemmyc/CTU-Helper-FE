@@ -1,13 +1,26 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import "regenerator-runtime";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+
 import { Box, Typography, Button } from "@mui/material";
 import { red } from "@mui/material/colors";
-import { useAuth } from "../context/AuthContext";
+
 import { HiLightBulb, HiQuestionMarkCircle } from "react-icons/hi";
 import { IoPaperPlaneOutline } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
+import { CiMicrophoneOn, CiMicrophoneOff } from "react-icons/ci";
 
 import toast from "react-hot-toast";
+
+import { grid } from "ldrs";
+
+grid.register();
+
 import ChatItem from "../components/chat/ChatItem";
+import { useAuth } from "../context/AuthContext";
+
 import {
   deleteChats,
   getChats,
@@ -22,7 +35,7 @@ type Message = {
 
 function Chat() {
   const auth = useAuth();
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [chatMessages, setChatMessages] = useState<Message[]>([]);
 
@@ -31,7 +44,8 @@ function Chat() {
   const [alwaysShowHelperBox, setAlwaysShowHelperBox] =
     useState<boolean>(false);
 
-  const chatContainerRef = useRef<HTMLDivElement | null>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop =
@@ -81,7 +95,12 @@ function Chat() {
       });
     }
   };
+
   const navigate = useNavigate();
+
+  const { transcript, listening, browserSupportsSpeechRecognition } =
+    useSpeechRecognition();
+
   useLayoutEffect(() => {
     if (auth?.isLoggedIn && auth.user) {
       toast.loading("Đang tải các đoạn hội thoại trước đó...", {
@@ -127,6 +146,12 @@ function Chat() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  useEffect(() => {
+    if (transcript) {
+      inputRef.current.value = transcript;
+    }
+  }, [transcript]);
+
   return (
     <Box
       sx={{
@@ -298,7 +323,7 @@ function Chat() {
                 textAlign: "center",
                 verticalAlign: "center",
                 fontStyle: "italic",
-                marginY: "auto"
+                marginY: "auto",
               }}
             >
               Hãy bắt đầu với một câu hỏi nhé...
@@ -318,7 +343,7 @@ function Chat() {
           })}
           <div style={{ display: isLoading ? "block" : "none" }}>
             <ChatItem
-              content={"Bạn đợi mình tìm kiếm các thông tin một chút nhé..."}
+              content={"Bạn đợi mình tìm kiếm các thông tin một chút nhé"}
               role={"ASSISTANT"}
             ></ChatItem>
           </div>
@@ -350,6 +375,32 @@ function Chat() {
               fontFamily: "Plus Jakarta Sans, sans-serif",
             }}
           />
+          {browserSupportsSpeechRecognition ? (
+            <>
+              {!listening ? (
+                <Button
+                  onClick={() => {
+                    SpeechRecognition.startListening({ language: "vi-VN" });
+                  }}
+                  variant="outlined"
+                >
+                  <CiMicrophoneOn size={24} />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    SpeechRecognition.stopListening();
+                  }}
+                  variant="outlined"
+                  color="error"
+                >
+                  <CiMicrophoneOff size={24} />
+                </Button>
+              )}
+            </>
+          ) : (
+            <></>
+          )}
           <Button onClick={handleSubmit} variant="outlined">
             <IoPaperPlaneOutline size={24}></IoPaperPlaneOutline>
           </Button>

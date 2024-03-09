@@ -25,7 +25,7 @@ function ChatItem({
           sx={{
             ml: "0",
             bgcolor: "white",
-            mt: ".5rem"
+            mt: ".5rem",
           }}
         >
           <img
@@ -37,9 +37,16 @@ function ChatItem({
           />
         </Avatar>
         <Box>
-          <Typography>
-            <Markdown>{content}</Markdown>
-          </Typography>
+          {content === "Bạn đợi mình tìm kiếm các thông tin một chút nhé" ? (
+            <>
+              <Typography sx={{marginBottom: "4px"}}>{content}</Typography>
+              <l-grid size="28" speed="1" color="black"></l-grid>
+            </>
+          ) : (
+            <Typography>
+              <Markdown>{content}</Markdown>
+            </Typography>
+          )}
         </Box>
       </Box>
     </>
@@ -60,8 +67,7 @@ function ChatItem({
             ml: "0",
             bgcolor: "white",
             color: "#333",
-            mt: ".5rem"
-
+            mt: ".5rem",
           }}
         >
           {auth?.user?.name[0] || ""}

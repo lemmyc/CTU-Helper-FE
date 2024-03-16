@@ -8,7 +8,7 @@ import { AuthProvider } from './context/AuthContext.tsx'
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast'
 
-axios.defaults.baseURL = "https://right-willing-pika.ngrok-free.app/api"
+axios.defaults.baseURL = "/api"
 axios.defaults.withCredentials = true
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = 'true'
 const theme = createTheme({

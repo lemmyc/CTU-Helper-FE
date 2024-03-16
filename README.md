@@ -17,12 +17,21 @@ The CTU-Helper website is an application built using **React** and **TypeScript*
     npm install
     ```
 
-3. **Run** the application in development mode:
+3. Update the ``.env`` file:
+
+    - **VITE_API_URL**: The URL of the API server to the CTU-Helper Backend (e.g., http://my-api.com/api)
+
+4. **Run** the application in development mode:
 
     ```
     npm run dev
     ```
+    or **Build** the application:
 
+    ```
+    npm run build
+    ```
+    the output can be found in `dist/` folder
 ## Directory Structure
 
 - `src/`: Contains the source code of the application.
@@ -43,4 +52,4 @@ If you'd like to contribute to the project, create a **pull request** with your 
 
 ## Contact
 
-If you have any questions or feedback, feel free to reach out to us via email: lnbdang@gmail.com.
+If you have any questions or feedback, feel free to reach out to me via email: lnbdang@gmail.com.

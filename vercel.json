@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://right-willing-pika.ngrok-free.app/:path*"
+    }
+  ]
+}

@@ -8,7 +8,7 @@ export default ({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: "https://right-willing-pika.ngrok-free.app",
+          target: process.env.VITE_API_URL,
           changeOrigin: true,
           secure: true,
           cookieDomainRewrite: "localhost",

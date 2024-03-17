@@ -1,4 +1,4 @@
-const routePrefix = import.meta.env.PUBLIC_URL || "/tvts"
+const routePrefix = ""
 const routes = {
     home: `${routePrefix}/`,
     login: `${routePrefix}/login`,

@@ -32,6 +32,7 @@ type Message = {
   role: "USER" | "ASSISTANT";
   content: string;
 };
+import routes from "../config/routes";
 
 function Chat() {
   const auth = useAuth();
@@ -126,7 +127,7 @@ function Chat() {
   }, [chatMessages]);
   useEffect(() => {
     if (!auth?.user) {
-      return navigate("/login");
+      return navigate(routes.login);
     }
   }, [auth]);
   useEffect(() => {

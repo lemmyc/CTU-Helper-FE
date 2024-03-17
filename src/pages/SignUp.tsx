@@ -10,6 +10,9 @@ import { useAuth } from "../context/AuthContext";
 import toast, {} from "react-hot-toast";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+import routes from "../config/routes";
+
 function SignUp() {
   const auth = useAuth();
   const navigate = useNavigate();
@@ -35,7 +38,7 @@ function SignUp() {
   }
   useEffect(() => {
     if (auth?.user) {
-      return navigate("/");
+      return navigate(routes.home);
     }
   }, [auth]);
   return (
@@ -98,7 +101,7 @@ function SignUp() {
                 }
               }}>
               Đã có tài khoản?&nbsp;
-              <Link to={"/login"}>Đăng nhập ngay</Link>
+              <Link to={`${routes.login}`}>Đăng nhập ngay</Link>
             </Typography>
             <Button
               type="submit"

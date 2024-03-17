@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
 
+import routes from "../config/routes"
+
 function Home() {
   const auth = useAuth();
 
@@ -242,7 +244,7 @@ function Home() {
             </div>
           </Carousel>
         </Box>
-        <Link to="/chat">
+        <Link to={`${routes.chat}`}>
           <Button
             sx={{
               width: { xs: "200px", md: "250px", xl: "280px" },

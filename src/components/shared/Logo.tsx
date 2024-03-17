@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Typography from "@mui/material/Typography";
+import routes from "../../config/routes";
 function Logo() {
   return (
     <div
@@ -10,7 +11,7 @@ function Logo() {
       }}
     >
       <Link
-        to={"/"}
+        to={`${routes.home}`}
         style={{
           textDecoration: "none",
           display: "flex",

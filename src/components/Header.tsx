@@ -3,10 +3,13 @@ import Logo from "./shared/Logo";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import NavigationLink from "./shared/NavigationLink";
+
+import routes from "../config/routes";
+
 function Header() {
   const auth = useAuth();
   const location = useLocation()?.pathname;
-  return location.startsWith("/login") || location.startsWith("/sign-up") ? (
+  return location.startsWith(routes.login) || location.startsWith(routes.signup) ? (
     <AppBar sx={{ position: "static", boxShadow: "none" }}>
       <Toolbar sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Logo />
@@ -21,7 +24,7 @@ function Header() {
             <>
               <NavigationLink
                 background="transparent"
-                to="/"
+                to={`${routes.home}`}
                 text="Đăng xuất"
                 textColor="#fff"
                 onClick={auth?.logout}
@@ -31,14 +34,14 @@ function Header() {
             <>
               <NavigationLink
                 background="#fff"
-                to="/login"
+                to={`${routes.login}`}
                 text="Đăng nhập"
                 textColor="#333"
 
               ></NavigationLink>
               <NavigationLink
                 background="transparent"
-                to="/sign-up"
+                to={`${routes.signup}`}
                 text="Đăng ký"
                 textColor="#fff"
                 

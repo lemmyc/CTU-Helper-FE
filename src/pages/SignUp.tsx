@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 
 import { Box, Typography, Button } from "@mui/material";
 
-
-
 import CustomizedInput from "../components/shared/CustomizedInput";
 import { useAuth } from "../context/AuthContext";
-import toast, {} from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,26 +14,37 @@ import routes from "../config/routes";
 function SignUp() {
   const auth = useAuth();
   const navigate = useNavigate();
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>)=>{
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    if (!email || !password || !email)
+      return toast.error("Thông tin đăng ký không được để trống", {
+        id: "signup-toast",
+      });
+    if (password.length < 3)
+      return toast.error("Mật khẩu phải dài tối thiểu là 3 kí tự", {
+        id: "signup-toast",
+      });
     try {
       toast.loading("Đang đăng ký...", {
-        id: "signup-toast"
-      })
+        id: "signup-toast",
+      });
       await auth?.signup(name, email, password);
       toast.success("Đăng ký thành công", {
-        id: "signup-toast"
-      })
+        id: "signup-toast",
+      });
     } catch (error) {
-      toast.error("Đăng ký thất bại, vui lòng kiểm tra lại thông tin đăng nhập", {
-        id: "signup-toast"
-      })
+      toast.error(
+        "Đăng ký thất bại, vui lòng kiểm tra lại thông tin đăng nhập",
+        {
+          id: "signup-toast",
+        }
+      );
     }
-  }
+  };
   useEffect(() => {
     if (auth?.user) {
       return navigate(routes.home);
@@ -49,7 +58,7 @@ function SignUp() {
         display: "flex",
         flex: "1",
         alignItems: "center",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
       }}
     >
       <Box
@@ -57,8 +66,8 @@ function SignUp() {
         justifyContent={"center"}
         alignItems={"center"}
         sx={{
-          mt: 5, 
-          mx: 5
+          mt: 5,
+          mx: 5,
         }}
       >
         <form
@@ -85,8 +94,8 @@ function SignUp() {
               sx={{
                 fontSize: {
                   xs: "18px",
-                  md: "24px"
-                }
+                  md: "24px",
+                },
               }}
             >
               Đăng ký tài khoản tại CTU-Helper
@@ -94,12 +103,14 @@ function SignUp() {
             <CustomizedInput type="text" name="name" label="Họ tên" />
             <CustomizedInput type="email" name="email" label="Email" />
             <CustomizedInput type="password" name="password" label="Mật Khẩu" />
-            <Typography sx={{
+            <Typography
+              sx={{
                 fontSize: {
                   xs: "15px",
-                  md: "18px"
-                }
-              }}>
+                  md: "18px",
+                },
+              }}
+            >
               Đã có tài khoản?&nbsp;
               <Link to={`${routes.login}`}>Đăng nhập ngay</Link>
             </Typography>

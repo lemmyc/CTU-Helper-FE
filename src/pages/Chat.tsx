@@ -13,7 +13,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { CiMicrophoneOn, CiMicrophoneOff } from "react-icons/ci";
 
 import toast from "react-hot-toast";
-
+import dictionary from "../helpers/dictionary"
 import { grid } from "ldrs";
 
 grid.register();
@@ -90,8 +90,8 @@ function Chat() {
       });
       setShowHelperBox(false);
     } catch (error) {
-      console.log(error);
-      toast.success("Đã có lỗi trong quá trình tải", {
+      // console.log(error);
+      toast.error("Đã có lỗi trong quá trình tải", {
         id: "deleteChats",
       });
     }
@@ -116,7 +116,7 @@ function Chat() {
         })
         .catch((error) => {
           console.log(error);
-          toast.success("Đã có lỗi trong quá trình tải", {
+          toast.error("Đã có lỗi trong quá trình tải", {
             id: "loadingChats",
           });
         });

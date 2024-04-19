@@ -1,11 +1,16 @@
 import {
-    ReactNode,
-    useState,
-    useEffect,
-    createContext,
-    useContext,
+  ReactNode,
+  useState,
+  useEffect,
+  createContext,
+  useContext,
 } from "react";
-import { checkAuth, loginUser, logoutUser, signupUser } from "../helpers/api-communicator";
+import {
+  checkAuth,
+  loginUser,
+  logoutUser,
+  signupUser,
+} from "../helpers/api-communicator";
 type User = {
   name: string;
   email: string;
@@ -25,40 +30,43 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    async function checkStatus(){
-      const data = await checkAuth();
-      if (data){
-        setUser({
-          email: data.email,
-          name: data.name
-        })
-        setIsLoggedIn(true)
-      }else{
-        setUser(null)
-        setIsLoggedIn(false)
-      }
+    async function checkStatus() {
+      try {
+        const data = await checkAuth();
+        if (data) {
+          setUser({
+            email: data.email,
+            name: data.name,
+          });
+          setIsLoggedIn(true);
+        } else {
+          setUser(null);
+          setIsLoggedIn(false);
+        }
+      // eslint-disable-next-line no-empty
+      } catch (error) {}
     }
     checkStatus();
     return () => {};
   }, []);
   const login = async (email: string, password: string) => {
     const data = await loginUser(email, password);
-    if (data){
+    if (data) {
       setUser({
         email: data.email,
-        name: data.name
-      })
-      setIsLoggedIn(true)
+        name: data.name,
+      });
+      setIsLoggedIn(true);
     }
   };
   const signup = async (name: string, email: string, password: string) => {
     const data = await signupUser(name, email, password);
-    if (data){
+    if (data) {
       setUser({
         email: data.email,
-        name: data.name
-      })
-      setIsLoggedIn(true)
+        name: data.name,
+      });
+      setIsLoggedIn(true);
     }
   };
   const logout = async () => {

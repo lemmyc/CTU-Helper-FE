@@ -19,6 +19,7 @@ function CustomizedInput(props: Props) {
       name={props.name}
       label={props.label}
       type={props.type}
+      autoComplete="on"
       sx={{
         width: {
           xs: "280px",

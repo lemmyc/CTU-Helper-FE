@@ -8,7 +8,7 @@ import { AuthProvider } from './context/AuthContext.tsx'
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast'
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL
+axios.defaults.baseURL = import.meta.env.VITE_ENVIRONMENT === "DEVELOPMENT" ? import.meta.env.VITE_DEVELOPMENT_API_URL : import.meta.env.VITE_PRODUCTION_API_URL
 axios.defaults.withCredentials = true
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = 'true'
 const theme = createTheme({

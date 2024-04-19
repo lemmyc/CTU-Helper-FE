@@ -13,7 +13,6 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { CiMicrophoneOn, CiMicrophoneOff } from "react-icons/ci";
 
 import toast from "react-hot-toast";
-import dictionary from "../helpers/dictionary"
 import { grid } from "ldrs";
 
 grid.register();
